@@ -1,0 +1,31 @@
+.CustomTenantDetails {
+  .Metrics {
+    margin-bottom: calc(2 * var(--unit));
+    height: calc(30 * var(--unit));
+    font-size: 2em;
+    background: var(--drawerSubtitleBackground);
+  }
+
+  .JsonView {
+    font-family: var(--font-monospace);
+  }
+  
+  .NamespacesTable {
+    .TableRow, .TableHead {
+      > :nth-child(1) { flex-grow: 4; }
+      > :nth-child(2) { flex-grow: 6; }
+      > :nth-child(3) { flex-grow: 2; }
+      > :nth-child(4) { flex-grow: 3; }
+    }
+  
+    .TableCell {
+      .Active {
+        color: var(--colorOk);
+      }
+
+      .Terminating {
+        color: var(--colorError);
+      }
+    } 
+  }
+}

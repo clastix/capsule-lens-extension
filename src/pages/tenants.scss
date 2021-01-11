@@ -1,0 +1,6 @@
+.CustomTenantPage {
+  .TableRow, .TableHead {
+    > :nth-child(2) { flex-grow: 1.5; }
+    > :nth-child(7) { flex-grow: 0.5; }
+  }
+}

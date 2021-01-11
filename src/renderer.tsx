@@ -1,72 +1,71 @@
-import { Component, LensRendererExtension } from "@k8slens/extensions";
-import { ClusterPageMenuRegistration, KubeObjectDetailRegistration, PageRegistration } from "@k8slens/extensions/dist/src/extensions/registries";
-import React from "react";
-import { ResourceQuotaPage } from "./components/resource-quotas";
-import { ResourceQuotaDetails } from "./components/resource-quota-details";
-import { TenantDetails } from "./components/tenant-details";
-import { TenantPage } from "./components/tenants";
-import { ResourceQuota } from "./kubeobjects/resource-quota";
-import { Tenant } from "./kubeobjects/tenant";
+import { Component, LensRendererExtension } from '@k8slens/extensions';
+import * as registries from '@k8slens/extensions/dist/src/extensions/registries';
+import React from 'react';
+import { ResourceQuotaDetails } from './details/resource-quota-details';
+import { TenantDetails } from './details/tenant-details';
+import { CustomResourceQuotaPage } from './pages/resource-quotas';
+import { CustomTenantPage } from './pages/tenants';
+import { Tenant } from './tenant';
 
 const enum id {
-  capsule = "capsule",
-  tenants = "tenants",
-  resourceBudget = "resourcebudget"
+  capsule = 'capsule',
+  tenants = 'tenants',
+  resourceBudget = 'resourcebudget'
 }
 
 export const Icon = (props: Component.IconProps) =>
-  <Component.Icon {...props} material="lens" tooltip="Capsule"/>
+  <Component.Icon {...props} material='lens' tooltip='Capsule'/>;
 
-export default class CrdSampleExtension extends LensRendererExtension {
-  clusterPages: PageRegistration[] = [
+export default class RendererExtension extends LensRendererExtension {
+  clusterPages: registries.PageRegistration[] = [
     {
       id: id.tenants,
       components: {
-        Page: () => <TenantPage extension={this} />
+        Page: () => <CustomTenantPage extension={this} />
       }
     },
     {
       id: id.resourceBudget,
       components: {
-        Page: () => <ResourceQuotaPage extension={this} />
+        Page: () => <CustomResourceQuotaPage extension={this} />
       }
-    },
+    }
   ];
 
-  clusterPageMenus: ClusterPageMenuRegistration[] = [
+  clusterPageMenus: registries.ClusterPageMenuRegistration[] = [
     {
       id: id.capsule,
-      title: "Capsule",
+      title: 'Capsule',
       components: { Icon }
     },
     {
       parentId: id.capsule,
       target: { pageId: id.tenants },
-      title: "Tenants",
+      title: 'Tenants',
       components: { Icon }
     },
     {
       parentId: id.capsule,
       target: { pageId: id.resourceBudget },
-      title: "Resource Budget",
+      title: 'Resource Budget',
       components: { Icon }
-    },
+    }
   ];
 
-  kubeObjectDetailItems: KubeObjectDetailRegistration[] = [
+  kubeObjectDetailItems: registries.KubeObjectDetailRegistration[] = [
     {
       kind: Tenant.kind,
-      apiVersions: ["capsule.clastix.io/v1alpha1"],
+      apiVersions: ['capsule.clastix.io/v1alpha1'],
       components: {
         Details: TenantDetails
       }
     },
     {
-      kind: ResourceQuota.kind,
-      apiVersions: ["v1"],
+      kind: 'ResourceQuota',
+      apiVersions: ['v1'],
       components: {
         Details: ResourceQuotaDetails
       }
-    },
+    }
   ];
 }

@@ -1,0 +1,5 @@
+.CustomResourceQuotaPage {
+  .TableRow, .TableHead {
+    > :nth-child(4) { flex-grow: 0.5; }
+  }
+}

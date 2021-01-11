@@ -1,56 +1,42 @@
-module.exports =  {
-  overrides: [
-    {
-      files: [
-        "./**/*.ts"
-      ],
-      parser: "@typescript-eslint/parser",
-      extends:  [
-        'plugin:@typescript-eslint/recommended',
-      ],
-      parserOptions:  {
-        ecmaVersion: 2018,
-        sourceType: 'module',
-      },
-      rules: {
-        "indent": ["error", 2]
-      },
+module.exports = {
+  env: {
+    node: true,
+    browser: true,
+    es2021: true
+  },
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended'
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
     },
-    {
-      files: [
-        "./**/*.tsx",
-      ],
-      parser: "@typescript-eslint/parser",
-      extends:  [
-        'plugin:@typescript-eslint/recommended',
-      ],
-      parserOptions:  {
-        ecmaVersion: 2018,
-        sourceType: 'module',
-        jsx: true,
-      },
-      rules: {
-        "indent": ["error", 2]
-      },
-    },
-    {
-      files: [
-        "./*.js"
-      ],
-      extends: [
-        'eslint:recommended',
-      ],
-      env: {
-        node: true
-      },
-      parserOptions:  {
-        ecmaVersion: 2018,
-        sourceType: 'module',
-      },
-      rules: {
-        "indent": ["error", 2],
-        "no-unused-vars": "off",
-      }
-    },
-  ]
+    ecmaVersion: 12,
+    sourceType: 'module'
+  },
+  plugins: [
+    'react',
+    '@typescript-eslint'
+  ],
+  rules: {
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    'comma-dangle': 'error',
+    'eol-last': 'error',
+    'indent': ['error', 2],
+    'jsx-quotes': ['error', 'prefer-single'],
+    'linebreak-style': ['error', 'unix'],
+    'no-trailing-spaces': 'error',
+    'quotes': ['error', 'single'],
+    'react/display-name': 'off',
+    'semi': ['error', 'always']
+  },
+  settings: {
+    react: {
+      version: '16'
+    }
+  }
 };

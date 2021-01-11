@@ -6,6 +6,12 @@ build: node_modules
 dev: node_modules
 	webpack --config webpack.config.js --mode=development --watch
 
+lint:
+	eslint --report-unused-disable-directives src
+
+lint-fix:
+	eslint --report-unused-disable-directives --fix src
+
 install:
 	ln -s "$(PWD)" "${HOME}/.k8slens/extensions/capsule"
 
