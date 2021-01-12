@@ -32,6 +32,7 @@ module.exports = {
     'no-trailing-spaces': 'error',
     'quotes': ['error', 'single'],
     'react/display-name': 'off',
+    'react/prop-types': 'off',
     'semi': ['error', 'always']
   },
   settings: {

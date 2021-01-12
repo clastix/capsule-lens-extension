@@ -42,25 +42,23 @@ export class TenantDetails extends React.Component<Props> {
 
 //
 
-const JsonView = (props: { json?: unknown }) => (
+const JsonView: React.FC<{ json?: unknown }> = props => (
   <Component.Input multiLine theme='round-black' className='JsonView'
     value={JSON.stringify(props.json, null, 2)} />
 );
 
-const Metrics = () => (
+const Metrics: React.FC = () => (
   <div className='Metrics flex justify-center align-center'>
     Metrics Placeholder
   </div>
 );
 
-const Labels = (
-  props: {
-    name: string;
-    values?: string[];
-    pairs?: [string, unknown][];
-    dict?: Record<string, unknown>;
-  }
-) => {
+const Labels: React.FC<{
+  name: string;
+  values?: string[];
+  pairs?: [string, unknown][];
+  dict?: Record<string, unknown>;
+}> = props => {
   if (!props.values && !props.pairs && !props.dict)
     return null;
 
@@ -79,7 +77,7 @@ const Labels = (
   );
 };
 
-const AllowList = (props: { name: string, value?: AllowList }) => {
+const AllowList: React.FC<{ name: string, value?: AllowList }> = props => {
   if (!props.value)
     return null;
 
@@ -95,7 +93,7 @@ const AllowList = (props: { name: string, value?: AllowList }) => {
   );
 };
 
-const Metadata = (props: { name: string, value?: Metadata }) => {
+const Metadata: React.FC<{ name: string, value?: Metadata }> = props => {
   if (!props.value)
     return null;
 
@@ -113,7 +111,7 @@ const Metadata = (props: { name: string, value?: Metadata }) => {
   );
 };
 
-const AdditionalRoleBindings = (props: { values?: AdditionalRoleBinding[] }) => {
+const AdditionalRoleBindings: React.FC<{ values?: AdditionalRoleBinding[] }> = props => {
   if (!props.values)
     return null;
 
@@ -142,7 +140,7 @@ const AdditionalRoleBindings = (props: { values?: AdditionalRoleBinding[] }) => 
   );
 };
 
-const LimitRanges = (props: { values?: LimitRange[] }) => {
+const LimitRanges: React.FC<{ values?: LimitRange[] }> = props => {
   if (!props.values)
     return null;
 
@@ -164,7 +162,7 @@ const LimitRanges = (props: { values?: LimitRange[] }) => {
   );
 };
 
-const NetworkPolicies = (props: { values?: NetworkPolicy[] }) => {
+const NetworkPolicies: React.FC<{ values?: NetworkPolicy[] }> = props => {
   if (!props.values)
     return null;
 
@@ -188,7 +186,7 @@ const NetworkPolicies = (props: { values?: NetworkPolicy[] }) => {
   );
 };
 
-const NamespacesTable = (props: { values?: string[] }) => {
+const NamespacesTable: React.FC<{ values?: string[] }> = props => {
   if (!props.values)
     return null;
 

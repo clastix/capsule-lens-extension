@@ -13,7 +13,7 @@ const enum id {
   resourceBudget = 'resourcebudget'
 }
 
-export const Icon = (props: Component.IconProps) =>
+export const Icon: React.FC<Component.IconProps> = props =>
   <Component.Icon {...props} material='lens' tooltip='Capsule'/>;
 
 export default class RendererExtension extends LensRendererExtension {
