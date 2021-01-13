@@ -13,35 +13,31 @@ const enum sortBy {
 const resourceQuotasStore: K8sApi.KubeObjectStore<ResourceQuota> =
   K8sApi.apiManager.getStore(K8sApi.resourceQuotaApi);
 
-export class CustomResourceQuotaPage extends React.Component<{ extension: LensRendererExtension }> {
-  render() {
-    return (
-      <Component.KubeObjectListLayout
-        className='CustomResourceQuotaPage'
-        store={resourceQuotasStore}
-        filterItems={[
-          items => items.filter(controlledByTenant)
-        ]}
-        sortingCallbacks={{
-          [sortBy.name]: (resourceQuota: ResourceQuota) => resourceQuota.getName(),
-          [sortBy.namespace]: (resourceQuota: ResourceQuota) => resourceQuota.getNs(),
-          [sortBy.age]: (resourceQuota: ResourceQuota) => resourceQuota.metadata.creationTimestamp
-        }}
-        searchFilters={[
-          (resourceQuota: ResourceQuota) => resourceQuota.getSearchFields()
-        ]}
-        renderHeaderTitle='Resource Quotas'
-        renderTableHeader={[
-          { title: 'Name', className: 'name', sortBy: sortBy.name },
-          { title: 'Namespace', className: 'namespace', sortBy: sortBy.namespace },
-          { title: 'Age', className: 'age', sortBy: sortBy.age }
-        ]}
-        renderTableContents={(resourceQuota: ResourceQuota) => [
-          resourceQuota.getName(),
-          resourceQuota.getNs(),
-          resourceQuota.getAge()
-        ]}
-      />
-    );
-  }
-}
+export const CustomResourceQuotaPage: React.FC<{ extension: LensRendererExtension }> = () => (
+  <Component.KubeObjectListLayout
+    className='CustomResourceQuotaPage'
+    store={resourceQuotasStore}
+    filterItems={[
+      items => items.filter(controlledByTenant)
+    ]}
+    sortingCallbacks={{
+      [sortBy.name]: (resourceQuota: ResourceQuota) => resourceQuota.getName(),
+      [sortBy.namespace]: (resourceQuota: ResourceQuota) => resourceQuota.getNs(),
+      [sortBy.age]: (resourceQuota: ResourceQuota) => resourceQuota.metadata.creationTimestamp
+    }}
+    searchFilters={[
+      (resourceQuota: ResourceQuota) => resourceQuota.getSearchFields()
+    ]}
+    renderHeaderTitle='Resource Quotas'
+    renderTableHeader={[
+      { title: 'Name', className: 'name', sortBy: sortBy.name },
+      { title: 'Namespace', className: 'namespace', sortBy: sortBy.namespace },
+      { title: 'Age', className: 'age', sortBy: sortBy.age }
+    ]}
+    renderTableContents={(resourceQuota: ResourceQuota) => [
+      resourceQuota.getName(),
+      resourceQuota.getNs(),
+      resourceQuota.getAge()
+    ]}
+  />
+);

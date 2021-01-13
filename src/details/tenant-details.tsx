@@ -6,39 +6,37 @@ import './tenant-details.scss';
 
 export type Props = Component.KubeObjectDetailsProps<Tenant>
 
-export class TenantDetails extends React.Component<Props> {
-  render() {
-    const { object: tenant } = this.props;
-    if (!tenant) return null;
+export const TenantDetails: React.FC<Props> = props => {
+  const { object: tenant } = props;
+  if (!tenant) return null;
 
-    const { spec, status } = tenant;
-    const resourceQuotas = spec.resourceQuotas
-      ?.flatMap(rq => Object.entries(rq.hard || {}));
+  const { spec, status } = tenant;
+  const resourceQuotas = spec.resourceQuotas
+    ?.flatMap(rq => Object.entries(rq.hard || {}));
 
-    return (
-      <div className='CustomTenantDetails'>
-        <Metrics />
-        <Component.KubeObjectMeta object={tenant} />
-        <Component.DrawerItem name='Namespace quota'>{spec.namespaceQuota}</Component.DrawerItem>
-        <Component.DrawerItem name='Namespace count'>{status.size}</Component.DrawerItem>
-        <Component.DrawerItem name='Owner name'>{spec.owner.name}</Component.DrawerItem>
-        <Component.DrawerItem name='Owner kind'>{spec.owner.kind}</Component.DrawerItem>
-        <Labels name='Node selector' dict={spec.nodeSelector} />
-        <Labels name='Resource Quotas' pairs={resourceQuotas} />
-        <AllowList name='External service IPs' value={spec.externalServiceIPs} />
-        <AllowList name='Container registries' value={spec.containerRegistries} />
-        <AllowList name='Ingress classes' value={spec.ingressClasses} />
-        <AllowList name='Storage classes' value={spec.storageClasses} />
-        <Metadata name='Namespaces metadata' value={spec.namespacesMetadata} />
-        <Metadata name='Services metadata' value={spec.servicesMetadata} />
-        <AdditionalRoleBindings values={spec.additionalRoleBindings} />
-        <LimitRanges values={spec.limitRanges} />
-        <NetworkPolicies values={spec.networkPolicies} />
-        <NamespacesTable values={status.namespaces} />
-      </div>
-    );
-  }
-}
+  return (
+    <div className='CustomTenantDetails'>
+      <Metrics />
+      <Component.KubeObjectMeta object={tenant} />
+      <Component.DrawerItem name='Namespace quota'>{spec.namespaceQuota}</Component.DrawerItem>
+      <Component.DrawerItem name='Namespace count'>{status.size}</Component.DrawerItem>
+      <Component.DrawerItem name='Owner name'>{spec.owner.name}</Component.DrawerItem>
+      <Component.DrawerItem name='Owner kind'>{spec.owner.kind}</Component.DrawerItem>
+      <Labels name='Node selector' dict={spec.nodeSelector} />
+      <Labels name='Resource Quotas' pairs={resourceQuotas} />
+      <AllowList name='External service IPs' value={spec.externalServiceIPs} />
+      <AllowList name='Container registries' value={spec.containerRegistries} />
+      <AllowList name='Ingress classes' value={spec.ingressClasses} />
+      <AllowList name='Storage classes' value={spec.storageClasses} />
+      <Metadata name='Namespaces metadata' value={spec.namespacesMetadata} />
+      <Metadata name='Services metadata' value={spec.servicesMetadata} />
+      <AdditionalRoleBindings values={spec.additionalRoleBindings} />
+      <LimitRanges values={spec.limitRanges} />
+      <NetworkPolicies values={spec.networkPolicies} />
+      <NamespacesTable values={status.namespaces} />
+    </div>
+  );
+};
 
 //
 

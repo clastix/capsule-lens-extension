@@ -6,18 +6,16 @@ import './resource-quota-details.scss';
 
 export type Props = Component.KubeObjectDetailsProps<ResourceQuota>
 
-export class ResourceQuotaDetails extends React.Component<Props> {
-  render() {
-    const { object: resourceQuota } = this.props;
-    if (!resourceQuota) return null;
-    if (!controlledByTenant(resourceQuota)) return null;
+export const ResourceQuotaDetails: React.FC<Props> = props => {
+  const { object: resourceQuota } = props;
+  if (!resourceQuota) return null;
+  if (!controlledByTenant(resourceQuota)) return null;
 
-    return (
-      <div className='CustomResourceQuotaDetails'>
-        <Component.DrawerItem name='Tenant Budget'>
-          TODO
-        </Component.DrawerItem>
-      </div>
-    );
-  }
-}
+  return (
+    <div className='CustomResourceQuotaDetails'>
+      <Component.DrawerItem name='Tenant Budget'>
+        TODO
+      </Component.DrawerItem>
+    </div>
+  );
+};
