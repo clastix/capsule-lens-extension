@@ -41,6 +41,7 @@ export const CustomTenantPage: React.FC<{ extension: LensRendererExtension }> = 
       { title: 'Namespace Count', className: 'namespace-count', sortBy: sortBy.namespaceCount },
       { title: 'Owner Name', className: 'owner-name', sortBy: sortBy.ownerName },
       { title: 'Owner Kind', className: 'owner-kind', sortBy: sortBy.ownerKind },
+      { title: 'Node Selector', className: 'node-selector' },
       { title: 'Age', className: 'age', sortBy: sortBy.name }
     ]}
     renderTableContents={(tenant: Tenant) => [
@@ -49,6 +50,7 @@ export const CustomTenantPage: React.FC<{ extension: LensRendererExtension }> = 
       tenant.status.size,
       tenant.spec.owner.name,
       tenant.spec.owner.kind,
+      renderLabels(tenant.spec.nodeSelector),
       tenant.getAge()
     ]}
     addRemoveButtons={{
@@ -56,3 +58,8 @@ export const CustomTenantPage: React.FC<{ extension: LensRendererExtension }> = 
     }}
   />
 );
+
+const renderLabels = (labels?: Record<string, string>) =>
+  labels && Object.entries(labels || {})
+    .map(([key, value]) => `${key}=${value}`)
+    .map(label => <Component.Badge key={label} label={label}/>);

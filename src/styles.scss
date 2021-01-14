@@ -12,3 +12,12 @@
     background-color: var(--drawerSubtitleBackground);
   }
 }
+
+%table-cell-labels-offsets {
+  padding-top: calc(var(--padding) / 2);
+  padding-bottom: 0;
+
+  .Badge + .Badge {
+    margin-left: calc(var(--padding) / 2);
+  }
+}
