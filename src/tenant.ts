@@ -77,7 +77,7 @@ export type Metadata = {
   additionalLabels?: Record<string, string>;
 };
 
-export type NetworkPolicyRuleDetails = {
+export type NetworkPolicyDetails = {
   ipBlock?: {
     cidr: string;
     except?: string[];
@@ -86,18 +86,25 @@ export type NetworkPolicyRuleDetails = {
   podSelector?: Selector;
 };
 
-export type NetworkPolicyRule = {
+export type NetworkPolicyEgress = {
   ports?: {
     port?: string | number;
     protocol?: string;
   }[];
-  to?: NetworkPolicyRuleDetails[];
-  from?: NetworkPolicyRuleDetails[];
+  to?: NetworkPolicyDetails[];
+};
+
+export type NetworkPolicyIngress = {
+  ports?: {
+    port?: string | number;
+    protocol?: string;
+  }[];
+  from?: NetworkPolicyDetails[];
 };
 
 export type NetworkPolicy = {
-  egress?: NetworkPolicyRule[];
-  ingress?: NetworkPolicyRule[];
+  egress?: NetworkPolicyEgress[];
+  ingress?: NetworkPolicyIngress[];
   podSelector: Selector;
   policyTypes?: string[];
 };
