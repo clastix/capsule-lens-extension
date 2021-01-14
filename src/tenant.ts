@@ -28,6 +28,7 @@ export type TenantSpec = {
   containerRegistries?: AllowList;
   externalServiceIPs?: { allowed: string[] };
   ingressClasses?: AllowList;
+  ingressHostnames?: AllowList;
   limitRanges?: LimitRange[];
   namespaceQuota?: number;
   namespacesMetadata?: Metadata;

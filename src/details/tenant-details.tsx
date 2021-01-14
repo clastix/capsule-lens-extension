@@ -27,6 +27,7 @@ export const TenantDetails: React.FC<Props> = props => {
       <AllowList name='External service IPs' value={spec.externalServiceIPs} />
       <AllowList name='Container registries' value={spec.containerRegistries} />
       <AllowList name='Ingress classes' value={spec.ingressClasses} />
+      <AllowList name='Ingress hostnames' value={spec.ingressHostnames} />
       <AllowList name='Storage classes' value={spec.storageClasses} />
       <Metadata name='Namespaces metadata' value={spec.namespacesMetadata} />
       <Metadata name='Services metadata' value={spec.servicesMetadata} />
