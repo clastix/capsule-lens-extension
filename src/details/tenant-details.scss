@@ -9,8 +9,27 @@
   .JsonView {
     font-family: var(--font-monospace);
   }
+
+  .Table.LimitRanges {
+    border: 1px solid var(--drawerSubtitleBackground);
+    border-radius: var(--border-radius);
+    
+    &:nth-child(1n+2) {
+      margin-top: var(--unit);
+    }
+
+    .TableHead {
+      background-color: var(--drawerSubtitleBackground);
+    }
+    
+    .TableCell:first-of-type {
+      width: calc(1/3*100%);
+      flex-grow: 0;
+      flex-basis: auto;
+    }
+  }
   
-  .NamespacesTable {
+  .Table.Namespaces {
     .TableRow, .TableHead {
       > :nth-child(1) { flex-grow: 4; }
       > :nth-child(2) { flex-grow: 6; }
