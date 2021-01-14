@@ -1,0 +1,14 @@
+@mixin fixed-column-width($width) {
+  width: $width;
+  flex-grow: 0;
+  flex-basis: auto;
+}
+
+%bordered-table {
+  border: 1px solid var(--drawerSubtitleBackground);
+  border-radius: var(--border-radius);
+
+  .TableHead {
+    background-color: var(--drawerSubtitleBackground);
+  }
+}

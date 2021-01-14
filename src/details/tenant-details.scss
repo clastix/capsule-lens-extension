@@ -1,3 +1,5 @@
+@import '../styles.scss';
+
 .CustomTenantDetails {
   .Metrics {
     margin-bottom: calc(2 * var(--unit));
@@ -11,21 +13,14 @@
   }
 
   .Table.LimitRanges {
-    border: 1px solid var(--drawerSubtitleBackground);
-    border-radius: var(--border-radius);
+    @extend %bordered-table;
     
     &:nth-child(1n+2) {
       margin-top: var(--unit);
     }
-
-    .TableHead {
-      background-color: var(--drawerSubtitleBackground);
-    }
     
     .TableCell:first-of-type {
-      width: calc(1/3*100%);
-      flex-grow: 0;
-      flex-basis: auto;
+      @include fixed-column-width(calc(1/3*100%));
     }
   }
   
