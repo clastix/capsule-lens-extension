@@ -1,13 +1,6 @@
 @import '../styles.scss';
 
 .TenantDetails.custom {
-  .Metrics {
-    margin-bottom: calc(2 * var(--unit));
-    height: calc(30 * var(--unit));
-    font-size: 2em;
-    background: var(--drawerSubtitleBackground);
-  }
-
   .JsonView {
     font-family: var(--font-monospace);
   }

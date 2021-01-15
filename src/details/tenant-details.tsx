@@ -17,7 +17,6 @@ export const TenantDetails: React.FC<Props> = props => {
 
   return (
     <div className='TenantDetails custom'>
-      <Metrics />
       <Component.KubeObjectMeta object={tenant} />
       <Component.DrawerItem name='Namespace quota'>{spec.namespaceQuota}</Component.DrawerItem>
       <Component.DrawerItem name='Namespace count'>{status.size}</Component.DrawerItem>
@@ -45,12 +44,6 @@ export const TenantDetails: React.FC<Props> = props => {
 const JsonView: React.FC<{ json?: unknown }> = props => (
   <Component.Input multiLine theme='round-black' className='JsonView'
     value={JSON.stringify(props.json, null, 2)} />
-);
-
-const Metrics: React.FC = () => (
-  <div className='Metrics flex justify-center align-center'>
-    Metrics Placeholder
-  </div>
 );
 
 const Labels: React.FC<{
