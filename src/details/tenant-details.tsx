@@ -209,11 +209,11 @@ const NetworkPolicies: React.FC<{ values?: NetworkPolicy[] }> = props => {
 };
 
 const NamespacesTable: React.FC<{ values?: string[] }> = props => {
-  if (!props.values)
-    return null;
-
   const nsStore: K8sApi.KubeObjectStore<Namespace> =
     K8sApi.apiManager.getStore(K8sApi.namespacesApi);
+
+  if (!props.values || !nsStore.isLoaded)
+    return null;
 
   const rows = props.values.map(name => {
     const ns = nsStore.getByName(name);
