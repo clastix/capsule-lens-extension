@@ -53,9 +53,6 @@ export const CustomTenantPage: React.FC<{ extension: LensRendererExtension }> = 
       renderLabels(tenant.spec.nodeSelector),
       tenant.getAge()
     ]}
-    addRemoveButtons={{
-      onAdd: () => console.log('add')
-    }}
   />
 );
 
