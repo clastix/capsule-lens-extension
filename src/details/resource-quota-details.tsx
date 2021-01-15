@@ -12,7 +12,7 @@ export const ResourceQuotaDetails: React.FC<Props> = props => {
   if (!controlledByTenant(resourceQuota)) return null;
 
   return (
-    <div className='CustomResourceQuotaDetails'>
+    <div className='ResourceQuotaDetails custom'>
       <Component.DrawerItem name='Tenant Budget'>
         TODO
       </Component.DrawerItem>

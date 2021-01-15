@@ -1,5 +1,5 @@
-.CustomResourceQuotaPage {
-  .TableRow, .TableHead {
-    > :nth-child(4) { flex-grow: 0.5; }
+.ResourceQuotas.custom {
+  .TableCell {
+    &.age { flex-grow: 0.5; }
   }
 }

@@ -15,7 +15,7 @@ const resourceQuotasStore: K8sApi.KubeObjectStore<ResourceQuota> =
 
 export const CustomResourceQuotaPage: React.FC<{ extension: LensRendererExtension }> = () => (
   <Component.KubeObjectListLayout
-    className='CustomResourceQuotaPage'
+    className='ResourceQuotas custom'
     store={resourceQuotasStore}
     filterItems={[
       items => items.filter(controlledByTenant)

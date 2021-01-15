@@ -19,7 +19,7 @@ const nsStore: K8sApi.KubeObjectStore<Namespace> =
 
 export const CustomTenantPage: React.FC<{ extension: LensRendererExtension }> = () => (
   <Component.KubeObjectListLayout
-    className='CustomTenantPage'
+    className='Tenants custom'
     store={tenantStore}
     dependentStores={[nsStore]}
     isClusterScoped={true}

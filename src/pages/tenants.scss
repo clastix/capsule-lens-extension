@@ -1,12 +1,12 @@
 @import '../styles.scss';
 
-.CustomTenantPage {
-  .TableRow, .TableHead {
-    > :nth-child(2) { flex-grow: 2.0; }
-    > :nth-child(7) { flex-grow: 2.0; }
-  }
+.Tenants.custom {
+  .TableCell {
+    &.name          { flex-grow: 2.0; }
+    &.node-selector { flex-grow: 2.0; }
 
-  .TableCell.node-selector {
-    @extend %table-cell-labels-offsets;
+    &.node-selector {
+      @extend %table-cell-labels-offsets;
+    }
   }
 }

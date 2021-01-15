@@ -16,7 +16,7 @@ export const TenantDetails: React.FC<Props> = props => {
     ?.flatMap(rq => Object.entries(rq.hard || {}));
 
   return (
-    <div className='CustomTenantDetails'>
+    <div className='TenantDetails custom'>
       <Metrics />
       <Component.KubeObjectMeta object={tenant} />
       <Component.DrawerItem name='Namespace quota'>{spec.namespaceQuota}</Component.DrawerItem>
@@ -86,7 +86,7 @@ const AllowList: React.FC<{ name: string, value?: AllowList }> = props => {
       <Labels name='Allowed' values={props.value.allowed} />
       {props.value.allowedRegex && (
         <Component.DrawerItem name='Allowed regex'>
-          <code>{props.value.allowedRegex}</code>
+          <span className='mono'>{props.value.allowedRegex}</span>
         </Component.DrawerItem>
       )}
     </Component.DrawerItem>
@@ -165,7 +165,7 @@ const LimitRanges: React.FC<{ values?: LimitRange[] }> = props => {
     ));
 
     return (
-      <Component.Table key={type} className='LimitRanges'>
+      <Component.Table key={type} className='limit-ranges'>
         <Component.TableHead>
           <Component.TableCell>{type}</Component.TableCell>
           {tableHead}
@@ -225,13 +225,17 @@ const NamespacesTable: React.FC<{ values?: string[] }> = props => {
 
     return (
       <Component.TableRow nowrap key={ns.getId()}>
-        <Component.TableCell>
+        <Component.TableCell className='name'>
           <Link to={Navigation.getDetailsUrl(ns.selfLink)}>{name}</Link>
         </Component.TableCell>
-        <Component.TableCell>{labels}</Component.TableCell>
-        <Component.TableCell>{age}</Component.TableCell>
-        <Component.TableCell>
-          <span className={status}>{status}</span>
+        <Component.TableCell className='labels'>
+          {labels}
+        </Component.TableCell>
+        <Component.TableCell className='age'>
+          {age}
+        </Component.TableCell>
+        <Component.TableCell className='status'>
+          <span className={status.toLowerCase()}>{status}</span>
         </Component.TableCell>
       </Component.TableRow>
     );
@@ -239,12 +243,12 @@ const NamespacesTable: React.FC<{ values?: string[] }> = props => {
 
   return <>
     <Component.DrawerTitle title='Namespaces' />
-    <Component.Table className='Namespaces'>
+    <Component.Table className='namespaces'>
       <Component.TableHead>
-        <Component.TableCell>Name</Component.TableCell>
-        <Component.TableCell>Labels</Component.TableCell>
-        <Component.TableCell>Age</Component.TableCell>
-        <Component.TableCell>Status</Component.TableCell>
+        <Component.TableCell className='name'>Name</Component.TableCell>
+        <Component.TableCell className='labels'>Labels</Component.TableCell>
+        <Component.TableCell className='age'>Age</Component.TableCell>
+        <Component.TableCell className='status'>Status</Component.TableCell>
       </Component.TableHead>
       {rows}
     </Component.Table>
