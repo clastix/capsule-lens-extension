@@ -1,6 +1,7 @@
-import { Component, K8sApi } from '@k8slens/extensions';
+import { Component, K8sApi, Navigation } from '@k8slens/extensions';
 import { Namespace } from '@k8slens/extensions/dist/src/renderer/api/endpoints';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Tenant, Metadata, AdditionalRoleBinding, AllowList, LimitRange, NetworkPolicy } from '../tenant';
 import './tenant-details.scss';
 
@@ -224,7 +225,9 @@ const NamespacesTable: React.FC<{ values?: string[] }> = props => {
 
     return (
       <Component.TableRow nowrap key={ns.getId()}>
-        <Component.TableCell>{name}</Component.TableCell>
+        <Component.TableCell>
+          <Link to={Navigation.getDetailsUrl(ns.selfLink)}>{name}</Link>
+        </Component.TableCell>
         <Component.TableCell>{labels}</Component.TableCell>
         <Component.TableCell>{age}</Component.TableCell>
         <Component.TableCell>
