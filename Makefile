@@ -6,14 +6,14 @@ build: node_modules
 dev: node_modules
 	webpack --config webpack.config.js --mode=development --watch
 
-lint:
+lint: node_modules
 	eslint --report-unused-disable-directives src
 
-lint-fix:
+lint-fix: node_modules
 	eslint --report-unused-disable-directives --fix src
 
 install:
-	ln -s "$(PWD)" "${HOME}/.k8slens/extensions/capsule"
+	ln -sT "$(PWD)" "${HOME}/.k8slens/extensions/capsule"
 
 node_modules: package.json
 	npm install && touch $@
