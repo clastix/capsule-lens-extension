@@ -18,8 +18,10 @@ export const TenantDetails: React.FC<Props> = props => {
   return (
     <div className='TenantDetails custom'>
       <Component.KubeObjectMeta object={tenant} />
-      <Component.DrawerItem name='Namespace Quota'>{spec.namespaceQuota}</Component.DrawerItem>
-      <Component.DrawerItem name='Namespace Count'>{status.size}</Component.DrawerItem>
+      <Component.DrawerItem name='Namespace'>
+        <Component.DrawerItem name='Quota'>{spec.namespaceQuota}</Component.DrawerItem>
+        <Component.DrawerItem name='Count'>{status.size}</Component.DrawerItem>
+      </Component.DrawerItem>
       <Component.DrawerItem name='Owner'>
         <Component.DrawerItem name='Name'>{spec.owner.name}</Component.DrawerItem>
         <Component.DrawerItem name='Kind'>{spec.owner.kind}</Component.DrawerItem>
