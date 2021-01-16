@@ -80,7 +80,7 @@ const AllowList: React.FC<{ name: string, value?: AllowList }> = props => {
     <Component.DrawerItem name={props.name}>
       <Labels name='Allowed' values={props.value.allowed || []} />
       {props.value.allowedRegex && (
-        <Component.DrawerItem name='Allowed Regex'>
+        <Component.DrawerItem labelsOnly name='Allowed Regex'>
           <Component.Badge className='mono' label={props.value.allowedRegex} />
         </Component.DrawerItem>
       )}
