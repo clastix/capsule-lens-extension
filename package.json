@@ -9,7 +9,7 @@
     "styles": []
   },
   "devDependencies": {
-    "@k8slens/extensions": "^4.0.0-rc.2",
+    "@k8slens/extensions": "^4.0.6",
     "@types/node": "^12.18.3",
     "@types/react": "^16.9.35",
     "@types/react-router-dom": "^5.1.7",
