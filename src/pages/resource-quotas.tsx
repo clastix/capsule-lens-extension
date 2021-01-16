@@ -17,6 +17,7 @@ export const CustomResourceQuotaPage: React.FC<{ extension: LensRendererExtensio
   <Component.KubeObjectListLayout
     className='ResourceQuotas custom'
     store={resourceQuotasStore}
+    isSelectable={false}
     filterItems={[
       items => items.filter(controlledByTenant)
     ]}

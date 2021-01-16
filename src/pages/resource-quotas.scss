@@ -1,5 +1,6 @@
 .ResourceQuotas.custom {
   .TableCell {
     &.age { flex-grow: 0.5; }
+    &.menu { display: none; }
   }
 }
