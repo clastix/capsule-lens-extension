@@ -20,8 +20,10 @@ export const TenantDetails: React.FC<Props> = props => {
       <Component.KubeObjectMeta object={tenant} />
       <Component.DrawerItem name='Namespace Quota'>{spec.namespaceQuota}</Component.DrawerItem>
       <Component.DrawerItem name='Namespace Count'>{status.size}</Component.DrawerItem>
-      <Component.DrawerItem name='Owner Name'>{spec.owner.name}</Component.DrawerItem>
-      <Component.DrawerItem name='Owner Kind'>{spec.owner.kind}</Component.DrawerItem>
+      <Component.DrawerItem name='Owner'>
+        <Component.DrawerItem name='Name'>{spec.owner.name}</Component.DrawerItem>
+        <Component.DrawerItem name='Kind'>{spec.owner.kind}</Component.DrawerItem>
+      </Component.DrawerItem>
       <Labels name='Node Selector' dict={spec.nodeSelector} />
       <Labels name='Resource Quotas' pairs={resourceQuotas} />
       <AllowList name='External Service IPs' value={spec.externalServiceIPs} />
