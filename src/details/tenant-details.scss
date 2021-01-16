@@ -9,6 +9,15 @@
     font-family: var(--font-monospace);
   }
 
+  .labels-only {
+    margin: -4px;
+
+    .Badge {
+      float: left;
+      margin: 4px;
+    }
+  }
+
   .Table {
     &.limit-ranges {
       @extend %bordered-table;

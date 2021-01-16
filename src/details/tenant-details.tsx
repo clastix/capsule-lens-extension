@@ -2,7 +2,7 @@ import { Component, K8sApi, Navigation } from '@k8slens/extensions';
 import { Namespace } from '@k8slens/extensions/dist/src/renderer/api/endpoints';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Tenant, Metadata, AdditionalRoleBinding, AllowList, LimitRange, NetworkPolicy } from '../tenant';
+import { Tenant, Metadata, AdditionalRoleBinding, AllowList, LimitRange, NetworkPolicy, ResourceQuota } from '../tenant';
 import './tenant-details.scss';
 
 export type Props = Component.KubeObjectDetailsProps<Tenant>
@@ -12,8 +12,6 @@ export const TenantDetails: React.FC<Props> = props => {
   if (!tenant) return null;
 
   const { spec, status } = tenant;
-  const resourceQuotas = spec.resourceQuotas
-    ?.flatMap(rq => Object.entries(rq.hard || {}));
 
   return (
     <div className='TenantDetails custom'>
@@ -27,7 +25,6 @@ export const TenantDetails: React.FC<Props> = props => {
         <Component.DrawerItem name='Kind'>{spec.owner.kind}</Component.DrawerItem>
       </Component.DrawerItem>
       <Labels name='Node Selector' dict={spec.nodeSelector} />
-      <Labels name='Resource Quotas' pairs={resourceQuotas} />
       <AllowList name='External Service IPs' value={spec.externalServiceIPs} />
       <AllowList name='Container Registries' value={spec.containerRegistries} />
       <AllowList name='Ingress Classes' value={spec.ingressClasses} />
@@ -35,6 +32,7 @@ export const TenantDetails: React.FC<Props> = props => {
       <AllowList name='Storage Classes' value={spec.storageClasses} />
       <Metadata name='Namespaces Metadata' value={spec.namespacesMetadata} />
       <Metadata name='Services Metadata' value={spec.servicesMetadata} />
+      <ResourceQuotas values={spec.resourceQuotas} />
       <AdditionalRoleBindings values={spec.additionalRoleBindings} />
       <LimitRanges values={spec.limitRanges} />
       <NetworkPolicies values={spec.networkPolicies} />
@@ -104,6 +102,27 @@ const Metadata: React.FC<{ name: string, value?: Metadata }> = props => {
         name='Additional Labels'
         dict={props.value.additionalLabels}
       />
+    </Component.DrawerItem>
+  );
+};
+
+const ResourceQuotas: React.FC<{ values?: ResourceQuota[] }> = props => {
+  if (!props.values)
+    return null;
+
+  const resourceQuotas = props.values
+    .flatMap(rq => Object.entries(rq.hard || {}))
+    .map(([key, value]) => `${key}=${value}`);
+
+  return (
+    <Component.DrawerItem name='Resource Quotas'>
+      <Component.DrawerParamToggler label={props.values.length}>
+        <div className='labels-only'>
+          {resourceQuotas.map(value => (
+            <Component.Badge key={value} label={value} />
+          ))}
+        </div>
+      </Component.DrawerParamToggler>
     </Component.DrawerItem>
   );
 };
