@@ -18,19 +18,19 @@ export const TenantDetails: React.FC<Props> = props => {
   return (
     <div className='TenantDetails custom'>
       <Component.KubeObjectMeta object={tenant} />
-      <Component.DrawerItem name='Namespace quota'>{spec.namespaceQuota}</Component.DrawerItem>
-      <Component.DrawerItem name='Namespace count'>{status.size}</Component.DrawerItem>
-      <Component.DrawerItem name='Owner name'>{spec.owner.name}</Component.DrawerItem>
-      <Component.DrawerItem name='Owner kind'>{spec.owner.kind}</Component.DrawerItem>
-      <Labels name='Node selector' dict={spec.nodeSelector} />
+      <Component.DrawerItem name='Namespace Quota'>{spec.namespaceQuota}</Component.DrawerItem>
+      <Component.DrawerItem name='Namespace Count'>{status.size}</Component.DrawerItem>
+      <Component.DrawerItem name='Owner Name'>{spec.owner.name}</Component.DrawerItem>
+      <Component.DrawerItem name='Owner Kind'>{spec.owner.kind}</Component.DrawerItem>
+      <Labels name='Node Selector' dict={spec.nodeSelector} />
       <Labels name='Resource Quotas' pairs={resourceQuotas} />
-      <AllowList name='External service IPs' value={spec.externalServiceIPs} />
-      <AllowList name='Container registries' value={spec.containerRegistries} />
-      <AllowList name='Ingress classes' value={spec.ingressClasses} />
-      <AllowList name='Ingress hostnames' value={spec.ingressHostnames} />
-      <AllowList name='Storage classes' value={spec.storageClasses} />
-      <Metadata name='Namespaces metadata' value={spec.namespacesMetadata} />
-      <Metadata name='Services metadata' value={spec.servicesMetadata} />
+      <AllowList name='External Service IPs' value={spec.externalServiceIPs} />
+      <AllowList name='Container Registries' value={spec.containerRegistries} />
+      <AllowList name='Ingress Classes' value={spec.ingressClasses} />
+      <AllowList name='Ingress Hostnames' value={spec.ingressHostnames} />
+      <AllowList name='Storage Classes' value={spec.storageClasses} />
+      <Metadata name='Namespaces Metadata' value={spec.namespacesMetadata} />
+      <Metadata name='Services Metadata' value={spec.servicesMetadata} />
       <AdditionalRoleBindings values={spec.additionalRoleBindings} />
       <LimitRanges values={spec.limitRanges} />
       <NetworkPolicies values={spec.networkPolicies} />
@@ -78,7 +78,7 @@ const AllowList: React.FC<{ name: string, value?: AllowList }> = props => {
     <Component.DrawerItem name={props.name}>
       <Labels name='Allowed' values={props.value.allowed} />
       {props.value.allowedRegex && (
-        <Component.DrawerItem name='Allowed regex'>
+        <Component.DrawerItem name='Allowed Regex'>
           <span className='mono'>{props.value.allowedRegex}</span>
         </Component.DrawerItem>
       )}
@@ -93,11 +93,11 @@ const Metadata: React.FC<{ name: string, value?: Metadata }> = props => {
   return (
     <Component.DrawerItem name={props.name}>
       <Labels
-        name='Additional annotations'
+        name='Additional Annotations'
         dict={props.value.additionalAnnotations}
       />
       <Labels
-        name='Additional labels'
+        name='Additional Labels'
         dict={props.value.additionalLabels}
       />
     </Component.DrawerItem>
@@ -109,14 +109,14 @@ const AdditionalRoleBindings: React.FC<{ values?: AdditionalRoleBinding[] }> = p
     return null;
 
   return (
-    <Component.DrawerItem name='Additional role bindings'>
+    <Component.DrawerItem name='Additional Role Bindings'>
       <Component.DrawerParamToggler label={props.values.length}>
         {props.values.map(binding => {
           const subjects = binding.subjects
             .flatMap(subject => Object.entries(subject));
 
           return <>
-            <Component.DrawerItem name='Cluster role name'>
+            <Component.DrawerItem name='Cluster Role Name'>
               {binding.clusterRoleName}
             </Component.DrawerItem>
             <Component.DrawerItem name='Subjects'>
@@ -169,7 +169,7 @@ const LimitRanges: React.FC<{ values?: LimitRange[] }> = props => {
   });
 
   return (
-    <Component.DrawerItem name='Limit ranges'>
+    <Component.DrawerItem name='Limit Ranges'>
       <Component.DrawerParamToggler label={props.values.length}>
         {tables}
       </Component.DrawerParamToggler>
@@ -182,11 +182,11 @@ const NetworkPolicies: React.FC<{ values?: NetworkPolicy[] }> = props => {
     return null;
 
   return (
-    <Component.DrawerItem name='Network policies'>
+    <Component.DrawerItem name='Network Policies'>
       <Component.DrawerParamToggler label={props.values.length}>
         {props.values.map(np => <>
-          <Labels name='Policy types' values={np.policyTypes} />
-          <Component.DrawerItem name='Pod selector'>
+          <Labels name='Policy Types' values={np.policyTypes} />
+          <Component.DrawerItem name='Pod Selector'>
             <JsonView json={np.podSelector} />
           </Component.DrawerItem>
           <Component.DrawerItem name='Egress'>

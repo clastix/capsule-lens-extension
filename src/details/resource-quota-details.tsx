@@ -16,7 +16,7 @@ export const ResourceQuotaDetails: React.FC<Props> = props => {
 
   return (
     <div className='ResourceQuotaDetails custom'>
-      <Quotas name='Tenant budget' quotas={quotas} />
+      <Quotas name='Tenant Budget' quotas={quotas} />
     </div>
   );
 };
