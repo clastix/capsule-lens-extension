@@ -17,6 +17,11 @@ const enum sortBy {
 const nsStore: K8sApi.KubeObjectStore<Namespace> =
   K8sApi.apiManager.getStore(K8sApi.namespacesApi);
 
+const renderLabels = (labels?: Record<string, string>) =>
+  labels && Object.entries(labels || {})
+    .map(([key, value]) => `${key}=${value}`)
+    .map(label => <Component.Badge key={label} label={label}/>);
+
 export const CustomTenantPage: React.FC<{ extension: LensRendererExtension }> = () => (
   <Component.KubeObjectListLayout
     className='Tenants custom'
@@ -55,8 +60,3 @@ export const CustomTenantPage: React.FC<{ extension: LensRendererExtension }> = 
     ]}
   />
 );
-
-const renderLabels = (labels?: Record<string, string>) =>
-  labels && Object.entries(labels || {})
-    .map(([key, value]) => `${key}=${value}`)
-    .map(label => <Component.Badge key={label} label={label}/>);
