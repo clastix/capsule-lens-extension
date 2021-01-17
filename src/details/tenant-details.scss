@@ -5,6 +5,20 @@
     font-family: var(--font-monospace);
   }
 
+  .DrawerItem .DrawerItem:first-of-type {
+    padding-top: 0;
+  }
+
+  .group {
+    border: 1px solid var(--borderFaintColor);
+    border-radius: var(--border-radius);
+    padding: var(--padding);
+
+    &:nth-child(1n+2) {
+      margin-top: var(--padding);
+    }
+  }
+
   .mono {
     font-family: var(--font-monospace);
   }

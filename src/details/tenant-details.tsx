@@ -114,16 +114,18 @@ const ResourceQuotas: React.FC<{ values?: ResourceQuota[] }> = props => {
   return (
     <Component.DrawerItem name='Resource Quotas'>
       <Component.DrawerParamToggler label={props.values.length}>
-        {props.values.map(rq => <>
-          <Labels name='Scopes' values={rq.scopes || []} />
-          <Component.DrawerItem name='Hard'>
-            {Object.entries(rq.hard || {}).map(([key, value]) => (
-              <Component.DrawerItem key={key} name={key}>
-                {value}
-              </Component.DrawerItem>
-            ))}
-          </Component.DrawerItem>
-        </>)}
+        {props.values.map((rq, i) => (
+          <div key={i} className='group'>
+            <Labels name='Scopes' values={rq.scopes || []} />
+            <Component.DrawerItem name='Hard'>
+              {Object.entries(rq.hard || {}).map(([key, value]) => (
+                <Component.DrawerItem key={key} name={key}>
+                  {value}
+                </Component.DrawerItem>
+              ))}
+            </Component.DrawerItem>
+          </div>
+        ))}
       </Component.DrawerParamToggler>
     </Component.DrawerItem>
   );
@@ -136,23 +138,24 @@ const AdditionalRoleBindings: React.FC<{ values?: AdditionalRoleBinding[] }> = p
   return (
     <Component.DrawerItem name='Additional Role Bindings'>
       <Component.DrawerParamToggler label={props.values.length}>
-        {props.values.map(binding => {
-          const subjects = binding.subjects
-            .flatMap(subject => Object.entries(subject));
-
-          return <>
+        {props.values.map((binding, i) => (
+          <div key={i} className='group'>
             <Component.DrawerItem name='Cluster Role Name'>
               {binding.clusterRoleName}
             </Component.DrawerItem>
             <Component.DrawerItem name='Subjects'>
-              {subjects.map(([key, value]) => (
-                <Component.DrawerItem key={key} name={titleCase(key)}>
-                  {value}
-                </Component.DrawerItem>
+              {binding.subjects.map((subject, i) => (
+                <div key={i} className='group'>
+                  {Object.entries(subject).map(([key, value]) => (
+                    <Component.DrawerItem key={key} name={titleCase(key)}>
+                      {value}
+                    </Component.DrawerItem>
+                  ))}
+                </div>
               ))}
             </Component.DrawerItem>
-          </>;
-        })}
+          </div>
+        ))}
       </Component.DrawerParamToggler>
     </Component.DrawerItem>
   );
@@ -168,20 +171,22 @@ const LimitRanges: React.FC<{ values?: LimitRange[] }> = props => {
   return (
     <Component.DrawerItem name='Limit Ranges'>
       <Component.DrawerParamToggler label={props.values.length}>
-        {limits.map(({ type, ...rest }) => <>
-          <Component.DrawerItem name='Type'>
-            {type}
-          </Component.DrawerItem>
-          {Object.entries(rest).map(([scope, limits]) => (
-            <Component.DrawerItem key={scope} name={titleCase(scope)}>
-              {Object.entries(limits).map(([name, value]) => (
-                <Component.DrawerItem key={name} name={titleCase(name)}>
-                  {value as string}
-                </Component.DrawerItem>
-              ))}
+        {limits.map(({ type, ...rest }) => (
+          <div key={type} className='group'>
+            <Component.DrawerItem name='Type'>
+              {type}
             </Component.DrawerItem>
-          ))}
-        </>)}
+            {Object.entries(rest).map(([scope, limits]) => (
+              <Component.DrawerItem key={scope} name={titleCase(scope)}>
+                {Object.entries(limits).map(([name, value]) => (
+                  <Component.DrawerItem key={name} name={titleCase(name)}>
+                    {value as string}
+                  </Component.DrawerItem>
+                ))}
+              </Component.DrawerItem>
+            ))}
+          </div>
+        ))}
       </Component.DrawerParamToggler>
     </Component.DrawerItem>
   );
