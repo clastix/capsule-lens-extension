@@ -18,31 +18,17 @@
     }
   }
 
-  .Table {
-    &.limit-ranges {
-      @extend %bordered-table;
+  .Table.namespaces {
+    @extend %table-cell-labels;
 
-      &:nth-child(1n+2) {
-        margin-top: var(--unit);
-      }
+    .TableCell {
+      &.name   { flex-grow: 1.0; }
+      &.labels { flex-grow: 2.0; }
+      &.age    { flex-grow: 0.5; }
+      &.status { flex-grow: 1.0; }
 
-      .TableCell:first-of-type {
-        @include fixed-column-width(calc(1/3*100%));
-      }
-    }
-
-    &.namespaces {
-      @extend %table-cell-labels;
-
-      .TableCell {
-        &.name   { flex-grow: 1.0; }
-        &.labels { flex-grow: 2.0; }
-        &.age    { flex-grow: 0.5; }
-        &.status { flex-grow: 1.0; }
-
-        .active      { color: var(--colorOk);    }
-        .terminating { color: var(--colorError); }
-      }
+      .active      { color: var(--colorOk);    }
+      .terminating { color: var(--colorError); }
     }
   }
 }

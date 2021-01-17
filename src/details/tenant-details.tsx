@@ -163,38 +163,23 @@ const LimitRanges: React.FC<{ values?: LimitRange[] }> = props => {
   const limits = props.values
     .flatMap(limitRange => limitRange.limits);
 
-  const tables = limits.map(({ type, ...rest }) => {
-    const rows = Object.entries(rest)
-      .map(([key, values]) => [key, Object.entries(values)] as const);
-
-    const tableHead = rows[0][1].map(([key], i) => (
-      <Component.TableCell key={i}>{key}</Component.TableCell>
-    ));
-
-    const tableRows = rows.map(([key, values]) => (
-      <Component.TableRow key={key}>
-        <Component.TableCell>{key}:</Component.TableCell>
-        {values.map(([, value], i) => (
-          <Component.TableCell key={i}>{value as string}</Component.TableCell>
-        ))}
-      </Component.TableRow>
-    ));
-
-    return (
-      <Component.Table key={type} className='limit-ranges'>
-        <Component.TableHead>
-          <Component.TableCell>{type}</Component.TableCell>
-          {tableHead}
-        </Component.TableHead>
-        {tableRows}
-      </Component.Table>
-    );
-  });
-
   return (
     <Component.DrawerItem name='Limit Ranges'>
       <Component.DrawerParamToggler label={props.values.length}>
-        {tables}
+        {limits.map(({ type, ...rest }) => <>
+          <Component.DrawerItem name='Type'>
+            {type}
+          </Component.DrawerItem>
+          {Object.entries(rest).map(([scope, limits]) => (
+            <Component.DrawerItem key={scope} name={scope}>
+              {Object.entries(limits).map(([name, value]) => (
+                <Component.DrawerItem key={name} name={name}>
+                  {value as string}
+                </Component.DrawerItem>
+              ))}
+            </Component.DrawerItem>
+          ))}
+        </>)}
       </Component.DrawerParamToggler>
     </Component.DrawerItem>
   );
