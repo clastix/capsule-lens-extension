@@ -165,25 +165,26 @@ const LimitRanges: React.FC<{ values?: LimitRange[] }> = props => {
   if (!props.values)
     return null;
 
-  const limits = props.values
-    .flatMap(limitRange => limitRange.limits);
-
   return (
     <Component.DrawerItem name='Limit Ranges'>
       <Component.DrawerParamToggler label={props.values.length}>
-        {limits.map(({ type, ...rest }) => (
-          <div key={type} className='group'>
-            <Component.DrawerItem name='Type'>
-              {type}
-            </Component.DrawerItem>
-            {Object.entries(rest).map(([scope, limits]) => (
-              <Component.DrawerItem key={scope} name={titleCase(scope)}>
-                {Object.entries(limits).map(([name, value]) => (
-                  <Component.DrawerItem key={name} name={titleCase(name)}>
-                    {value as string}
+        {props.values.map(({ limits }, i) => (
+          <div key={i} className='group'>
+            {limits.map(({ type, ...rest }) => (
+              <div key={type} className='group'>
+                <Component.DrawerItem name='Type'>
+                  {type}
+                </Component.DrawerItem>
+                {Object.entries(rest).map(([scope, limits]) => (
+                  <Component.DrawerItem key={scope} name={titleCase(scope)}>
+                    {Object.entries(limits).map(([name, value]) => (
+                      <Component.DrawerItem key={name} name={titleCase(name)}>
+                        {value as string}
+                      </Component.DrawerItem>
+                    ))}
                   </Component.DrawerItem>
                 ))}
-              </Component.DrawerItem>
+              </div>
             ))}
           </div>
         ))}
