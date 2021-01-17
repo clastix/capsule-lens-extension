@@ -110,18 +110,19 @@ const ResourceQuotas: React.FC<{ values?: ResourceQuota[] }> = props => {
   if (!props.values)
     return null;
 
-  const resourceQuotas = props.values
-    .flatMap(rq => Object.entries(rq.hard || {}))
-    .map(([key, value]) => `${key}=${value}`);
-
   return (
     <Component.DrawerItem name='Resource Quotas'>
       <Component.DrawerParamToggler label={props.values.length}>
-        <div className='labels-only'>
-          {resourceQuotas.map(value => (
-            <Component.Badge key={value} label={value} />
-          ))}
-        </div>
+        {props.values.map(rq => <>
+          <Labels name='Scopes' values={rq.scopes || []} />
+          <Component.DrawerItem name='Hard'>
+            {Object.entries(rq.hard || {}).map(([key, value]) => (
+              <Component.DrawerItem key={key} name={key}>
+                {value}
+              </Component.DrawerItem>
+            ))}
+          </Component.DrawerItem>
+        </>)}
       </Component.DrawerParamToggler>
     </Component.DrawerItem>
   );
