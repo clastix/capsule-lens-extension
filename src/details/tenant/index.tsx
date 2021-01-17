@@ -22,6 +22,7 @@ export const TenantDetails: React.FC<Props> = props => {
   return (
     <div className='TenantDetails custom'>
       <Component.KubeObjectMeta object={tenant} />
+      <Labels name='Node Selector' dict={spec.nodeSelector} />
       <Component.DrawerItem name='Namespace'>
         <Component.DrawerItem name='Quota'>{spec.namespaceQuota}</Component.DrawerItem>
         <Component.DrawerItem name='Count'>{status.size}</Component.DrawerItem>
@@ -30,7 +31,6 @@ export const TenantDetails: React.FC<Props> = props => {
         <Component.DrawerItem name='Name'>{spec.owner.name}</Component.DrawerItem>
         <Component.DrawerItem name='Kind'>{spec.owner.kind}</Component.DrawerItem>
       </Component.DrawerItem>
-      <Labels name='Node Selector' dict={spec.nodeSelector} />
       <AllowList name='External Service IPs' value={spec.externalServiceIPs} />
       <AllowList name='Container Registries' value={spec.containerRegistries} />
       <AllowList name='Ingress Classes' value={spec.ingressClasses} />

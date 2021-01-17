@@ -87,19 +87,18 @@ export type NetworkPolicyDetails = {
   podSelector?: Selector;
 };
 
+export type NetworkPolicyPort = {
+  port?: string | number;
+  protocol?: string;
+};
+
 export type NetworkPolicyEgress = {
-  ports?: {
-    port?: string | number;
-    protocol?: string;
-  }[];
+  ports?: NetworkPolicyPort[];
   to?: NetworkPolicyDetails[];
 };
 
 export type NetworkPolicyIngress = {
-  ports?: {
-    port?: string | number;
-    protocol?: string;
-  }[];
+  ports?: NetworkPolicyPort[];
   from?: NetworkPolicyDetails[];
 };
 

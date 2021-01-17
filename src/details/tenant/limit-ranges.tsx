@@ -2,6 +2,7 @@ import { Component } from '@k8slens/extensions';
 import React from 'react';
 import { LimitRange } from '../../tenant';
 import { titleCase } from '../../utils';
+import { Group } from './groups';
 
 export type Props = {
   values?: LimitRange[];
@@ -15,9 +16,9 @@ export const LimitRanges: React.FC<Props> = props => {
     <Component.DrawerItem name='Limit Ranges'>
       <Component.DrawerParamToggler label={props.values.length}>
         {props.values.map(({ limits }, i) => (
-          <div key={i} className='group'>
+          <Group key={i}>
             {limits.map(({ type, ...rest }) => (
-              <div key={type} className='group'>
+              <Group key={type}>
                 <Component.DrawerItem name='Type'>
                   {type}
                 </Component.DrawerItem>
@@ -30,9 +31,9 @@ export const LimitRanges: React.FC<Props> = props => {
                     ))}
                   </Component.DrawerItem>
                 ))}
-              </div>
+              </Group>
             ))}
-          </div>
+          </Group>
         ))}
       </Component.DrawerParamToggler>
     </Component.DrawerItem>

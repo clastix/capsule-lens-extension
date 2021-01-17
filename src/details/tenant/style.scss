@@ -5,12 +5,19 @@
     font-family: var(--font-monospace);
   }
 
-  .DrawerItem .DrawerItem:first-of-type {
-    padding-top: 0;
-  }
+  .DrawerItem {
+    &:first-of-type {
+      padding-top: 0;
+    }
 
-  .DrawerItem > .name {
-    font-weight: var(--font-weight-normal);
+    &:last-of-type {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    > .name {
+      font-weight: var(--font-weight-normal);
+    }
   }
 
   .DrawerItem {
@@ -32,6 +39,34 @@
 
     &:nth-child(1n+2) {
       margin-top: var(--padding);
+    }
+  }
+
+  .vgroup {
+    border-radius: var(--border-radius);
+    border: 1px solid var(--borderFaintColor);
+
+    &:nth-child(1n+2) {
+      margin-top: var(--padding);
+    }
+
+    > .title {
+      padding: var(--padding);
+      background: var(--drawerSubtitleBackground);
+      color: var(--drawerItemNameColor);
+    }
+
+    > .content {
+      padding: var(--padding);
+      color: var(--drawerItemValueColor);
+
+      > .Badge + .Badge {
+        margin-left: var(--padding);
+      }
+
+      &:empty::after {
+        content: '—';
+      }
     }
   }
 
