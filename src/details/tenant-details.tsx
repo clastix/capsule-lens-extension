@@ -3,6 +3,7 @@ import { Namespace } from '@k8slens/extensions/dist/src/renderer/api/endpoints';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Tenant, Metadata, AdditionalRoleBinding, AllowList, LimitRange, NetworkPolicy, ResourceQuota } from '../tenant';
+import { titleCase } from '../utils';
 import './tenant-details.scss';
 
 export type Props = Component.KubeObjectDetailsProps<Tenant>
@@ -145,7 +146,7 @@ const AdditionalRoleBindings: React.FC<{ values?: AdditionalRoleBinding[] }> = p
             </Component.DrawerItem>
             <Component.DrawerItem name='Subjects'>
               {subjects.map(([key, value]) => (
-                <Component.DrawerItem key={key} name={key}>
+                <Component.DrawerItem key={key} name={titleCase(key)}>
                   {value}
                 </Component.DrawerItem>
               ))}
@@ -172,9 +173,9 @@ const LimitRanges: React.FC<{ values?: LimitRange[] }> = props => {
             {type}
           </Component.DrawerItem>
           {Object.entries(rest).map(([scope, limits]) => (
-            <Component.DrawerItem key={scope} name={scope}>
+            <Component.DrawerItem key={scope} name={titleCase(scope)}>
               {Object.entries(limits).map(([name, value]) => (
-                <Component.DrawerItem key={name} name={name}>
+                <Component.DrawerItem key={name} name={titleCase(name)}>
                   {value as string}
                 </Component.DrawerItem>
               ))}
