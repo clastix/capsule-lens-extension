@@ -14,7 +14,7 @@ const enum id {
 }
 
 export const Icon: React.FC<Component.IconProps> = props =>
-  <Component.Icon {...props} material='lens' tooltip='Capsule'/>;
+  <Component.Icon {...props} material='verified_user' tooltip='Capsule'/>;
 
 export default class RendererExtension extends LensRendererExtension {
   clusterPages: registries.PageRegistration[] = [
