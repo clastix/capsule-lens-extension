@@ -1,8 +1,8 @@
 import { Component, LensRendererExtension } from '@k8slens/extensions';
 import * as registries from '@k8slens/extensions/dist/src/extensions/registries';
 import React from 'react';
-import { ResourceQuotaDetails } from './details/resource-quota-details';
-import { TenantDetails } from './details/tenant-details';
+import { ResourceQuotaDetails } from './details/resource-quota';
+import { TenantDetails } from './details/tenant';
 import { CustomResourceQuotaPage } from './pages/resource-quotas';
 import { CustomTenantPage } from './pages/tenants';
 import { Tenant } from './tenant';

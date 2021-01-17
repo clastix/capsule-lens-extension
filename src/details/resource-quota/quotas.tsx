@@ -1,34 +1,18 @@
 import { Component } from '@k8slens/extensions';
-import { IResourceQuotaValues, ResourceQuota } from '@k8slens/extensions/dist/src/renderer/api/endpoints';
+import { IResourceQuotaValues } from '@k8slens/extensions/dist/src/renderer/api/endpoints';
 import React from 'react';
-import { controlledByTenant } from '../utils';
-import './resource-quota-details.scss';
 
-export type Props = Component.KubeObjectDetailsProps<ResourceQuota>
-
-export const ResourceQuotaDetails: React.FC<Props> = props => {
-  const { object: resourceQuota } = props;
-  if (!resourceQuota) return null;
-  if (!controlledByTenant(resourceQuota)) return null;
-
-  const annotations = resourceQuota.getAnnotations();
-  const quotas = parseAnnotations(annotations);
-
-  return (
-    <div className='ResourceQuotaDetails custom'>
-      <Quotas name='Tenant Budget' quotas={quotas} />
-    </div>
-  );
-};
-
-//
-
-type Quotas = {
+export type Quotas = {
   used: IResourceQuotaValues;
   hard: IResourceQuotaValues;
-}
+};
 
-const Quotas: React.FC<{ name: string, quotas: Quotas }> = props => (
+export type Props = {
+  name: string;
+  quotas: Quotas;
+};
+
+export const Quotas: React.FC<Props> = props => (
   <Component.DrawerItem name={props.name} className='quota-list'>
     {Object.keys(props.quotas.hard).map(name => {
       const used = props.quotas.used[name];
@@ -53,8 +37,6 @@ const Quotas: React.FC<{ name: string, quotas: Quotas }> = props => (
   </Component.DrawerItem>
 );
 
-//
-
 const parsePower = (re: RegExp, chars: string, value: string) => {
   const unit = re.exec(value);
   return unit ? chars.indexOf(unit[0]) + 1 : 0;
@@ -67,16 +49,4 @@ const parseValue = (name: string, value: string) => {
   if (/cpu/.test(name))
     return num/1000**parsePower(/[mun]/, 'mun', value);
   return num*1000**parsePower(/[kmgtq]/, 'kmgtq', value);
-};
-
-const parseAnnotations = (annotations: string[]) => {
-  const quotas: Quotas = { used: {}, hard: {} };
-  for (const ann of annotations) {
-    if (ann.startsWith('quota.capsule.clastix.io/')) {
-      const [key, value] = ann.slice(25).split('=');
-      const [scope, name] = key.split('-') as ['used' | 'hard', string];
-      quotas[scope][name] = value;
-    }
-  }
-  return quotas;
 };
