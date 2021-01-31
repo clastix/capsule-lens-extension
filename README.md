@@ -29,7 +29,7 @@ downloaded and installed. Alternatively, you can copy the download URL of the re
 1. Download your desired version from GitHub [release](https://github.com/clastix/capsule-lens-extension/releases) page. Alternatively, just copy the download URL of the release artefact.
 2. Open Lens application and select **Lens** menu, and then click **Extensions** item, or press
    <kbd>Shift</kbd> + <kbd>Command</kbd> + <kbd>E</kbd> to open the **Manage Lens Extensions** page.
-3. Specify the path (.tar, .tgz) or download URL to the extension package and click **Install**.
+3. Specify the path of the extension package `.tar`, `.tgz` or the download URL and click **Install**.
 4. If everything is fine, you'll see the `@clastix/capsule-lens-extension` extension listed under
    **Installed Extensions**. Click **Enable** to enable it.
 5. Close the **Manage Lens Extensions** page and verify that the **Capsule** menu item shows up in the main **Lens** menu.
@@ -51,13 +51,21 @@ downloaded and installed. Alternatively, you can copy the download URL of the re
 With Capsule extension for Lens, a cluster administrator can easly manage from a single pane of glass all resources of a Kubernetes cluster, including all the Tenants created through the Capsule Operator. Please, refer to the [documentation](https://github.com/clastix/capsule/blob/master/docs/index.md) about how Capsule can help to address multi-tanancy and policy control on your Kubernetes cluster.
 
 ### Tenants list
+List all tenants:
 
 ![Tenants List](assets/images/capsule-lens-tenants-list.png)
 
 ### Tenant details
+See the deatils of each tenant and change it through the embedded Lens editor:
 
-![Tenants List](assets/images/capsule-lens-tenant-details.png)
+![Tenant details](assets/images/capsule-lens-tenant-details.png)
 
 ### Resources Quota and Budget for all tenants 
+Check the resources usage and quota at both the tenant and namespace level:
 
-![Tenants List](assets/images/capsule-lens-resources-budget.png)
+![Resources Quota and Budget](assets/images/capsule-lens-resources-budget.png)
+
+### Allowed namespaces list
+If you installed the [Capsule Proxy](https://github.com/clastix/capsule-proxy), each tenant user can see only the namespaces he has access:
+
+![Allowed namespaces list](assets/images/capsule-lens-namespaces.png)
