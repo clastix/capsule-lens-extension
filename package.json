@@ -1,12 +1,17 @@
 {
   "name": "@clastix/capsule-lens-extension",
-  "version": "0.1.0",
-  "author": "CLASTIX",
+  "version": "0.0.1",
+  "author": "clastix.io",
   "description": "Capsule Lens Extension",
+  "main": "dist/main.js",
   "renderer": "dist/renderer.js",
   "lens": {
     "metadata": {},
     "styles": []
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "lens": "^4.0.6"
   },
   "devDependencies": {
     "@k8slens/extensions": "^4.0.6",
