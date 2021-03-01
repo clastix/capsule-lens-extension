@@ -1,6 +1,7 @@
 import { Component } from '@k8slens/extensions';
 import React from 'react';
 import * as tnt from '../../tenant';
+import { DrawerTitleToggle } from './drawer-title-toggle';
 import { Group, VGroup, VGroupItem } from './groups';
 import { Labels } from './labels';
 
@@ -12,10 +13,11 @@ export const NetworkPolicies: React.FC<Props> = props => {
   if (!props.values)
     return null;
 
-  return <>
-    <Component.DrawerTitle title='Network Policies' />
-    {renderPolicies(props.values)}
-  </>;
+  return (
+    <DrawerTitleToggle title='Network Policies'>
+      {renderPolicies(props.values)}
+    </DrawerTitleToggle>
+  );
 };
 
 //

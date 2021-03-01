@@ -2,6 +2,7 @@ import { Component, K8sApi, Navigation } from '@k8slens/extensions';
 import { Namespace } from '@k8slens/extensions/dist/src/renderer/api/endpoints';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { DrawerTitleToggle } from './drawer-title-toggle';
 
 const nsStore: K8sApi.KubeObjectStore<Namespace> =
   K8sApi.apiManager.getStore(K8sApi.namespacesApi);
@@ -40,16 +41,17 @@ export const NamespacesTable: React.FC<Props> = props => {
     );
   });
 
-  return <>
-    <Component.DrawerTitle title='Namespaces' />
-    <Component.Table className='namespaces'>
-      <Component.TableHead>
-        <Component.TableCell className='name'>Name</Component.TableCell>
-        <Component.TableCell className='labels'>Labels</Component.TableCell>
-        <Component.TableCell className='age'>Age</Component.TableCell>
-        <Component.TableCell className='status'>Status</Component.TableCell>
-      </Component.TableHead>
-      {rows}
-    </Component.Table>
-  </>;
+  return (
+    <DrawerTitleToggle title='Namespaces'>
+      <Component.Table className='namespaces'>
+        <Component.TableHead>
+          <Component.TableCell className='name'>Name</Component.TableCell>
+          <Component.TableCell className='labels'>Labels</Component.TableCell>
+          <Component.TableCell className='age'>Age</Component.TableCell>
+          <Component.TableCell className='status'>Status</Component.TableCell>
+        </Component.TableHead>
+        {rows}
+      </Component.Table>
+    </DrawerTitleToggle>
+  );
 };
