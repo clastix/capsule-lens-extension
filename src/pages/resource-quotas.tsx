@@ -25,10 +25,8 @@ export const CustomResourceQuotaPage: React.FC<{ extension: LensRendererExtensio
   <Component.KubeObjectListLayout
     className='ResourceQuotas custom'
     store={resourceQuotasStore}
+    items={resourceQuotasStore.items.filter(controlledByTenant)}
     isSelectable={false}
-    filterItems={[
-      items => items.filter(controlledByTenant)
-    ]}
     sortingCallbacks={{
       [sortBy.name]: (resourceQuota: ResourceQuota) => resourceQuota.getName(),
       [sortBy.namespace]: (resourceQuota: ResourceQuota) => resourceQuota.getNs(),
