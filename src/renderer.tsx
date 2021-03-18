@@ -1,7 +1,6 @@
 import { Component, LensRendererExtension } from '@k8slens/extensions';
 import * as registries from '@k8slens/extensions/dist/src/extensions/registries';
 import React from 'react';
-import { ResourceQuotaDetails } from './details/resource-quota';
 import { TenantDetails } from './details/tenant';
 import { CustomResourceQuotaPage } from './pages/resource-quotas';
 import { CustomTenantPage } from './pages/tenants';
@@ -58,13 +57,6 @@ export default class RendererExtension extends LensRendererExtension {
       apiVersions: ['capsule.clastix.io/v1alpha1'],
       components: {
         Details: TenantDetails
-      }
-    },
-    {
-      kind: 'ResourceQuota',
-      apiVersions: ['v1'],
-      components: {
-        Details: ResourceQuotaDetails
       }
     }
   ];
