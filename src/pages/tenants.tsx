@@ -50,18 +50,15 @@ export const CustomTenantPage: React.FC<{ extension: LensRendererExtension }> = 
       { title: 'Node Selector', className: 'node-selector' },
       { title: 'Age', className: 'age', sortBy: sortBy.name }
     ]}
-    renderTableContents={(tenant: Tenant) => {
-      console.log(tenant);
-      return [
-        tenant.getName(),
-        tenant.spec.namespaceQuota,
-        tenant.status?.size,
-        tenant.spec.owner.name,
-        tenant.spec.owner.kind,
-        renderLabels(tenant.spec.nodeSelector),
-        tenant.getAge()
-      ];
-    }}
+    renderTableContents={(tenant: Tenant) => [
+      tenant.getName(),
+      tenant.spec.namespaceQuota,
+      tenant.status?.size,
+      tenant.spec.owner.name,
+      tenant.spec.owner.kind,
+      renderLabels(tenant.spec.nodeSelector),
+      tenant.getAge()
+    ]}
     addRemoveButtons={{
       addTooltip: 'Add Tenant',
       onAdd: () => AddTenantDialog.open()
