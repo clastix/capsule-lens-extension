@@ -3,6 +3,7 @@ import { Namespace } from '@k8slens/extensions/dist/src/renderer/api/endpoints';
 import React from 'react';
 import { Tenant } from '../tenant';
 import { tenantStore } from '../tenant-store';
+import { AddTenantDialog } from '../dialogs/add-tenant';
 import './tenants.scss';
 
 const enum sortBy {
@@ -22,7 +23,7 @@ const renderLabels = (labels?: Record<string, string>) =>
     .map(([key, value]) => `${key}=${value}`)
     .map(label => <Component.Badge key={label} label={label}/>);
 
-export const CustomTenantPage: React.FC<{ extension: LensRendererExtension }> = () => (
+export const CustomTenantPage: React.FC<{ extension: LensRendererExtension }> = () => <>
   <Component.KubeObjectListLayout
     className='Tenants custom'
     store={tenantStore}
@@ -31,7 +32,7 @@ export const CustomTenantPage: React.FC<{ extension: LensRendererExtension }> = 
     sortingCallbacks={{
       [sortBy.name]: (tenant: Tenant) => tenant.getName(),
       [sortBy.namespaceQuota]: (tenant: Tenant) => tenant.spec.namespaceQuota || 0,
-      [sortBy.namespaceCount]: (tenant: Tenant) => tenant.status.size,
+      [sortBy.namespaceCount]: (tenant: Tenant) => tenant.status?.size || 0,
       [sortBy.ownerName]: (tenant: Tenant) => tenant.spec.owner.name,
       [sortBy.ownerKind]: (tenant: Tenant) => tenant.spec.owner.kind,
       [sortBy.age]: (tenant: Tenant) => tenant.metadata.creationTimestamp
@@ -49,14 +50,22 @@ export const CustomTenantPage: React.FC<{ extension: LensRendererExtension }> = 
       { title: 'Node Selector', className: 'node-selector' },
       { title: 'Age', className: 'age', sortBy: sortBy.name }
     ]}
-    renderTableContents={(tenant: Tenant) => [
-      tenant.getName(),
-      tenant.spec.namespaceQuota,
-      tenant.status.size,
-      tenant.spec.owner.name,
-      tenant.spec.owner.kind,
-      renderLabels(tenant.spec.nodeSelector),
-      tenant.getAge()
-    ]}
+    renderTableContents={(tenant: Tenant) => {
+      console.log(tenant);
+      return [
+        tenant.getName(),
+        tenant.spec.namespaceQuota,
+        tenant.status?.size,
+        tenant.spec.owner.name,
+        tenant.spec.owner.kind,
+        renderLabels(tenant.spec.nodeSelector),
+        tenant.getAge()
+      ];
+    }}
+    addRemoveButtons={{
+      addTooltip: 'Add Tenant',
+      onAdd: () => AddTenantDialog.open()
+    }}
   />
-);
+  <AddTenantDialog />
+</>;

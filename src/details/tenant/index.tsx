@@ -25,7 +25,7 @@ export const TenantDetails: React.FC<Props> = props => {
       <Labels name='Node Selector' dict={spec.nodeSelector} />
       <Component.DrawerItem name='Namespace'>
         <Component.DrawerItem name='Quota'>{spec.namespaceQuota}</Component.DrawerItem>
-        <Component.DrawerItem name='Count'>{status.size}</Component.DrawerItem>
+        <Component.DrawerItem name='Count'>{status?.size}</Component.DrawerItem>
       </Component.DrawerItem>
       <Component.DrawerItem name='Owner'>
         <Component.DrawerItem name='Name'>{spec.owner.name}</Component.DrawerItem>
@@ -42,7 +42,7 @@ export const TenantDetails: React.FC<Props> = props => {
       <AdditionalRoleBindings values={spec.additionalRoleBindings} />
       <LimitRanges values={spec.limitRanges} />
       <NetworkPolicies values={spec.networkPolicies} />
-      <NamespacesTable values={status.namespaces} />
+      <NamespacesTable values={status?.namespaces} />
     </div>
   );
 };

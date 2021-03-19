@@ -9,7 +9,7 @@ export class Tenant extends K8sApi.KubeObject {
   apiVersion!: string;
   metadata!: TenantMetadata;
   spec!: TenantSpec;
-  status!: TenantStatus;
+  status?: TenantStatus;
 }
 
 //
