@@ -44,8 +44,7 @@ export class AddTenantDialog extends React.Component<Props> {
       onSuccess?.(created);
       AddTenantDialog.close();
     } catch (err) {
-      // TODO a proper notification
-      alert(err);
+      Component.Notifications.error(err);
       onError?.(err);
     }
   };
