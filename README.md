@@ -18,7 +18,7 @@ This guide shows how to install the extension either from from pre-built release
 ## Prerequisites
 
 * Lens minimum [4.0.6](https://github.com/lensapp/lens/releases/tag/v4.0.6) should first be [installed](https://github.com/lensapp/lens#installation) on your workstation.
-* Follow the [Capsule Getting Started](https://github.com/clastix/capsule/blob/master/docs/operator/getting-started.md) guide to understand how to install the **Capsule Operator** in your Kubernetes cluster.
+* Follow the [Capsule Getting Started](https://github.com/clastix/capsule/blob/master/docs/content/general/getting-started.md) guide to understand how to install the **Capsule Operator** in your Kubernetes cluster.
 * Optionally, install the [Capsule Proxy](https://github.com/clastix/capsule-proxy) for an enhanced user experience for your tenant users. 
 
 ## From pre-built release
@@ -48,7 +48,7 @@ downloaded and installed. Alternatively, you can copy the download URL of the re
 
 # Getting Started
 
-With Capsule extension for Lens, a cluster administrator can easly manage from a single pane of glass all resources of a Kubernetes cluster, including all the Tenants created through the Capsule Operator. Please, refer to the [documentation](https://github.com/clastix/capsule/blob/master/docs/index.md) about how Capsule can help to address multi-tanancy and policy control on your Kubernetes cluster.
+With Capsule extension for Lens, a cluster administrator can easly manage from a single pane of glass all resources of a Kubernetes cluster, including all the Tenants created through the Capsule Operator. Please, refer to the [documentation](https://github.com/clastix/capsule/blob/master/docs/content/index.md) about how Capsule can help to address multi-tanancy and policy control on your Kubernetes cluster.
 
 ### Tenants list
 List all tenants:
