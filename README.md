@@ -17,7 +17,7 @@ This guide shows how to install the extension either from from pre-built release
 
 ## Prerequisites
 
-* Lens minimum [4.0.6](https://github.com/lensapp/lens/releases/tag/v4.0.6) should first be [installed](https://github.com/lensapp/lens#installation) on your workstation.
+* Lens minimum [5.3.0](https://github.com/lensapp/lens/releases/tag/v5.3.0) should first be [installed](https://github.com/lensapp/lens#installation) on your workstation.
 * Follow the [Capsule Getting Started](https://github.com/clastix/capsule/blob/master/docs/content/general/getting-started.md) guide to understand how to install the **Capsule Operator** in your Kubernetes cluster.
 * Optionally, install the [Capsule Proxy](https://github.com/clastix/capsule-proxy) for an enhanced user experience for your tenant users. 
 
