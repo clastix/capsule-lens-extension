@@ -1,4 +1,5 @@
-import { Component } from '@k8slens/extensions';
+import { Renderer } from '@k8slens/extensions';
+const { Component } = Renderer;
 import React from 'react';
 import { LimitRange } from '../../tenant';
 import { titleCase } from '../../utils';

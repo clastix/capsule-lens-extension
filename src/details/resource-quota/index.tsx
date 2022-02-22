@@ -1,11 +1,10 @@
-import { Component } from '@k8slens/extensions';
-import { ResourceQuota } from '@k8slens/extensions/dist/src/renderer/api/endpoints';
+import { Renderer, Main } from '@k8slens/extensions';
 import React from 'react';
 import { controlledByTenant } from '../../utils';
 import { Quotas } from './quotas';
 import './style.scss';
 
-export type Props = Component.KubeObjectDetailsProps<ResourceQuota>
+export type Props = Renderer.Component.KubeObjectDetailsProps<Main.K8sApi.ResourceQuota>
 
 export const ResourceQuotaDetails: React.FC<Props> = props => {
   const { object: resourceQuota } = props;

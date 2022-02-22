@@ -1,6 +1,6 @@
-import { K8sApi } from '@k8slens/extensions';
+import { Renderer } from '@k8slens/extensions';
 
-export class Tenant extends K8sApi.KubeObject {
+export class Tenant extends Renderer.K8sApi.KubeObject {
   static kind = 'Tenant'
   static namespaced = false
   static apiBase = '/apis/capsule.clastix.io/v1alpha1/tenants'

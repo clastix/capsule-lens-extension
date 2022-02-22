@@ -1,7 +1,7 @@
-import { ResourceQuota } from '@k8slens/extensions/dist/src/renderer/api/endpoints';
+import { Renderer } from '@k8slens/extensions';
 import { Tenant } from './tenant';
 
-export const controlledByTenant = (rq: ResourceQuota) =>
+export const controlledByTenant = (rq: Renderer.K8sApi.ResourceQuota) =>
   rq.getOwnerRefs().some(ref => ref.kind === Tenant.kind);
 
 export const titleCase = (input: string) =>

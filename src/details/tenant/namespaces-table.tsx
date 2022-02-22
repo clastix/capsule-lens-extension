@@ -1,11 +1,12 @@
-import { Component, K8sApi, Navigation } from '@k8slens/extensions';
-import { Namespace } from '@k8slens/extensions/dist/src/renderer/api/endpoints';
+import { Renderer } from '@k8slens/extensions';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { DrawerTitleToggle } from './drawer-title-toggle';
 
-const nsStore: K8sApi.KubeObjectStore<Namespace> =
-  K8sApi.apiManager.getStore(K8sApi.namespacesApi);
+const { Component, Navigation } = Renderer;
+const {apiManager, namespacesApi} = Renderer.K8sApi;
+type NamespaceStore = Renderer.K8sApi.NamespaceStore;
+const nsStore: NamespaceStore = (apiManager.getStore(namespacesApi) as NamespaceStore);
 
 export type Props = {
   values?: string[];

@@ -1,10 +1,10 @@
-import { Component } from '@k8slens/extensions';
+import { Renderer } from '@k8slens/extensions';
+const { Component } = Renderer;
 import React from 'react';
 import * as tnt from '../../tenant';
 import { titleCase } from '../../utils';
 import { DrawerTitleToggle } from './drawer-title-toggle';
 import { Group } from './groups';
-
 export type Props = {
   values?: tnt.AdditionalRoleBinding[];
 };

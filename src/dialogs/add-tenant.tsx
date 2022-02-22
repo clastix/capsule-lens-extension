@@ -1,10 +1,13 @@
-import { Component } from '@k8slens/extensions';
+import { Renderer } from '@k8slens/extensions';
+import { JsonApiErrorParsed } from '@k8slens/extensions/dist/src/common/k8s-api/json-api';
 import { DialogProps } from '@k8slens/extensions/dist/src/renderer/components/dialog';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import React from 'react';
 import { Tenant } from '../tenant';
 import { tenantStore } from '../tenant-store';
+
+const {Component} = Renderer;
 
 interface Props extends DialogProps {
   onSuccess?(ns: Tenant): void;
@@ -44,7 +47,7 @@ export class AddTenantDialog extends React.Component<Props> {
       onSuccess?.(created);
       AddTenantDialog.close();
     } catch (err) {
-      Component.Notifications.error(err);
+      Component.Notifications.error((err as JsonApiErrorParsed));
       onError?.(err);
     }
   };
