@@ -37,7 +37,7 @@ downloaded and installed. Alternatively, you can copy the download URL of the re
 ## From source (Linux/MacOS)
 
 1. Clone this repo.
-2. `make build install` to build the extension and create a symlink.
+2. `make build && make install` to build the extension and create a symlink.
 3. Enable the extension in Lens **Extensions** as above.
 
 ## Development mode
