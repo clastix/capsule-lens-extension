@@ -13,7 +13,7 @@ lint-fix: node_modules
 	eslint --report-unused-disable-directives --fix src
 
 install:
-	ln -sT "$(PWD)" "${HOME}/.k8slens/extensions/capsule"
+	ln -s "$(PWD)" "${HOME}/.k8slens/extensions/capsule"
 
 node_modules: package.json
 	npm install && touch $@
