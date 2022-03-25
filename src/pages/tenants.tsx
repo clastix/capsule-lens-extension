@@ -1,10 +1,11 @@
-import { Component, K8sApi, LensRendererExtension } from '@k8slens/extensions';
-import { Namespace } from '@k8slens/extensions/dist/src/renderer/api/endpoints';
+import { Renderer } from '@k8slens/extensions';
 import React from 'react';
 import { Tenant } from '../tenant';
 import { tenantStore } from '../tenant-store';
 import { AddTenantDialog } from '../dialogs/add-tenant';
 import './tenants.scss';
+
+const {apiManager, namespacesApi} = Renderer.K8sApi;
 
 const enum sortBy {
   name = 'name',
@@ -14,21 +15,19 @@ const enum sortBy {
   ownerKind = 'ownerkind',
   age = 'age',
 }
-
-const nsStore: K8sApi.KubeObjectStore<Namespace> =
-  K8sApi.apiManager.getStore(K8sApi.namespacesApi);
+type NamespaceStore = Renderer.K8sApi.NamespaceStore;
+const nsStore: NamespaceStore = (apiManager.getStore(namespacesApi) as NamespaceStore);
 
 const renderLabels = (labels?: Record<string, string>) =>
   labels && Object.entries(labels || {})
     .map(([key, value]) => `${key}=${value}`)
-    .map(label => <Component.Badge key={label} label={label}/>);
+    .map(label => <Renderer.Component.Badge key={label} label={label}/>);
 
-export const CustomTenantPage: React.FC<{ extension: LensRendererExtension }> = () => <>
-  <Component.KubeObjectListLayout
+export const CustomTenantPage: React.FC<{ extension: Renderer.LensExtension }> = () => <>
+  <Renderer.Component.KubeObjectListLayout
     className='Tenants custom'
     store={tenantStore}
     dependentStores={[nsStore]}
-    isClusterScoped={true}
     sortingCallbacks={{
       [sortBy.name]: (tenant: Tenant) => tenant.getName(),
       [sortBy.namespaceQuota]: (tenant: Tenant) => tenant.spec.namespaceQuota || 0,

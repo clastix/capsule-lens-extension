@@ -1,4 +1,5 @@
-import { Component } from '@k8slens/extensions';
+import { Renderer } from '@k8slens/extensions';
+const { Component } = Renderer;
 import React from 'react';
 import { Tenant } from '../../tenant';
 import { AdditionalRoleBindings } from './additional-role-bindings';
@@ -11,7 +12,7 @@ import { NetworkPolicies } from './network-policies';
 import { ResourceQuotas } from './resource-quotas';
 import './style.scss';
 
-export type Props = Component.KubeObjectDetailsProps<Tenant>
+export type Props = Renderer.Component.KubeObjectDetailsProps<Tenant>;
 
 export const TenantDetails: React.FC<Props> = props => {
   const { object: tenant } = props;

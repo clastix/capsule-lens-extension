@@ -1,9 +1,12 @@
-import { Component, K8sApi, LensRendererExtension } from '@k8slens/extensions';
-import { ResourceQuota } from '@k8slens/extensions/dist/src/renderer/api/endpoints';
+import { Renderer } from '@k8slens/extensions';
 import React from 'react';
 import { Tenant } from '../tenant';
 import { controlledByTenant } from '../utils';
 import './resource-quotas.scss';
+
+const {apiManager, resourceQuotaApi} = Renderer.K8sApi;
+type ResourceQuota = Renderer.K8sApi.ResourceQuota;
+type ResourceQuotasStore = Renderer.K8sApi.ResourceQuotasStore;
 
 const enum sortBy {
   name = 'name',
@@ -12,8 +15,7 @@ const enum sortBy {
   age = 'age'
 }
 
-const resourceQuotasStore: K8sApi.KubeObjectStore<ResourceQuota> =
-  K8sApi.apiManager.getStore(K8sApi.resourceQuotaApi);
+const resourceQuotasStore: ResourceQuotasStore =  (apiManager.getStore(resourceQuotaApi) as ResourceQuotasStore);
 
 const getTenantName = (resourceQuota: ResourceQuota) =>
   resourceQuota
@@ -21,8 +23,8 @@ const getTenantName = (resourceQuota: ResourceQuota) =>
     .find(ref => ref.kind === Tenant.kind)!
     .name;
 
-export const CustomResourceQuotaPage: React.FC<{ extension: LensRendererExtension }> = () => (
-  <Component.KubeObjectListLayout
+export const CustomResourceQuotaPage: React.FC<{ extension: Renderer.LensExtension }> = () => (
+  <Renderer.Component.KubeObjectListLayout
     className='ResourceQuotas custom'
     store={resourceQuotasStore}
     items={resourceQuotasStore.items.filter(controlledByTenant)}

@@ -1,4 +1,4 @@
-import { Component, LensRendererExtension } from '@k8slens/extensions';
+import { Renderer } from '@k8slens/extensions';
 import * as registries from '@k8slens/extensions/dist/src/extensions/registries';
 import React from 'react';
 import { TenantDetails } from './details/tenant';
@@ -12,10 +12,10 @@ const enum id {
   resourceBudget = 'resourcebudget'
 }
 
-export const Icon: React.FC<Component.IconProps> = props =>
-  <Component.Icon {...props} material='verified_user' tooltip='Capsule'/>;
+export const Icon: React.FC<Renderer.Component.IconProps> = props =>
+  <Renderer.Component.Icon {...props} material='verified_user' tooltip='Capsule'/>;
 
-export default class RendererExtension extends LensRendererExtension {
+export default class RendererExtension extends Renderer.LensExtension {
   clusterPages: registries.PageRegistration[] = [
     {
       id: id.tenants,

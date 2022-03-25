@@ -1,9 +1,9 @@
-import { Component } from '@k8slens/extensions';
-import { IResourceQuotaValues } from '@k8slens/extensions/dist/src/renderer/api/endpoints';
+import { Renderer } from '@k8slens/extensions';
+import { IResourceQuotaValues } from '@k8slens/extensions/dist/src/common/k8s-api/endpoints';
 import React from 'react';
 
 export type Quotas = {
-  used: IResourceQuotaValues;
+  used: IResourceQuotaValues,
   hard: IResourceQuotaValues;
 };
 
@@ -13,7 +13,7 @@ export type Props = {
 };
 
 export const Quotas: React.FC<Props> = props => (
-  <Component.DrawerItem name={props.name} className='quota-list'>
+  <Renderer.Component.DrawerItem name={props.name} className='quota-list'>
     {Object.keys(props.quotas.hard).map(name => {
       const used = props.quotas.used[name];
       const hard = props.quotas.hard[name];
@@ -26,7 +26,7 @@ export const Quotas: React.FC<Props> = props => (
         <div key={name} className='param'>
           <span className='title'>{name}</span>
           <span className='value'>{used} / {hard}</span>
-          <Component.LineProgress
+          <Renderer.Component.LineProgress
             max={max}
             value={current}
             tooltip={<p>Set: {hard}. Usage: {`${usage}%`}</p>}
@@ -34,7 +34,7 @@ export const Quotas: React.FC<Props> = props => (
         </div>
       );
     })}
-  </Component.DrawerItem>
+  </Renderer.Component.DrawerItem>
 );
 
 const parsePower = (re: RegExp, chars: string, value: string) => {
